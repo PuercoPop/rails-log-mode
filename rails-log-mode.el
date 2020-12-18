@@ -1,4 +1,4 @@
-;;; rails-log-mode.el --- Major mode for viewing Rails log files
+;;; rails-log-mode.el --- Major mode for viewing Rails log files  -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2012 Anantha Kumaran.
 
