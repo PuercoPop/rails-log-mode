@@ -30,14 +30,11 @@
 (require 'ansi-color)
 (require 'cl-lib)
 
-(defvar rails-log-process nil)
-(make-variable-buffer-local 'rails-log-process)
+(defvar-local rails-log-process nil)
 
-(defvar rails-log-bundler-paths nil)
-(make-variable-buffer-local 'rails-log-bundler-paths)
+(defvar-local rails-log-bundler-paths nil)
 
-(defvar rails-log-project-root-cache nil)
-(make-variable-buffer-local 'rails-log-project-root-cache)
+(defvar-local rails-log-project-root-cache nil)
 
 (defvar rails-log-mode-map
   (let ((map (make-sparse-keymap)))
