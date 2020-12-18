@@ -181,9 +181,4 @@
   (rails-log-show environment))
 
 (provide 'rails-log-mode)
-
-;; Local Variables:
-;; byte-compile-warnings: (not cl-functions)
-;; End:
-
 ;;; rails-log-mode.el ends here
