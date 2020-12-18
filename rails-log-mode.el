@@ -29,22 +29,18 @@
 
 (require 'ansi-color)
 (require 'cl-lib)
+(require 'project)
 
 (defvar-local rails-log-process nil)
 
 (defvar-local rails-log-bundler-paths nil)
-
-(defvar-local rails-log-project-root-cache nil)
 
 (defun rails-log-buffer-name (file)
   (let ((project (car (last (split-string (rails-log-project-root) "/" t)))))
     (concat "*rails-" project "-" file "-log" "*")))
 
 (defun rails-log-project-root ()
-  (or rails-log-project-root-cache
-      (let ((gemfile-dir (locate-dominating-file default-directory "Gemfile")))
-        (when gemfile-dir
-          (setq rails-log-project-root-cache (expand-file-name gemfile-dir))))))
+  (cdr (project-current)))
 
 (define-derived-mode rails-log-mode fundamental-mode "Rails log"
   "Major mode for viewing Rails log files."
@@ -157,7 +153,7 @@
 (defun rails-log-show (file)
   (let ((root (rails-log-project-root)))
     (if root
-        (let ((log-file (concat root "log/" file ".log"))
+        (let ((log-file (expand-file-name (concat root "log/" file ".log")))
               (buffer (get-buffer-create (rails-log-buffer-name file))))
           (setq rails-log-process (start-process "rails-log" buffer "tail" "-n" "100" "-f" log-file))
           (set-process-filter rails-log-process #'rails-log-filter)
