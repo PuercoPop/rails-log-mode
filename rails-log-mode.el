@@ -24,7 +24,7 @@
 ;;; Code:
 
 (require 'ansi-color)
-(require 'cl)
+(require 'cl-lib)
 
 (defvar rails-log-process nil)
 (make-variable-buffer-local 'rails-log-process)
@@ -100,7 +100,7 @@
 
 (defun rails-log-gem-root (name)
   (when rails-log-bundler-paths
-    (find-if (lambda (path)
+    (cl-find-if (lambda (path)
                (let* ((basename (file-name-nondirectory path))
                       (gemname (mapconcat #'identity (butlast (split-string basename "-")) "-")))
                  (string= name gemname)))
