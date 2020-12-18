@@ -36,10 +36,6 @@
 
 (defvar-local rails-log-project-root-cache nil)
 
-(defvar rails-log-mode-map
-  (let ((map (make-sparse-keymap)))
-    map))
-
 (defun rails-log-buffer-name (file)
   (let ((project (car (last (split-string (rails-log-project-root) "/" t)))))
     (concat "*rails-" project "-" file "-log" "*")))
@@ -51,9 +47,7 @@
           (setq rails-log-project-root-cache (expand-file-name gemfile-dir))))))
 
 (define-derived-mode rails-log-mode fundamental-mode "Rails log"
-  "Major mode for viewing Rails log files.
-
-\\{rails-log-mode-map}"
+  "Major mode for viewing Rails log files."
 
   (setq buffer-read-only t)
   (buffer-disable-undo)
