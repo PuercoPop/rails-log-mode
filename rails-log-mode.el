@@ -171,19 +171,10 @@
       (error "Gemfile not found."))))
 
 ;;;###autoload
-(defun rails-log-show-development ()
-  (interactive)
-  (rails-log-show "development"))
-
-;;;###autoload
-(defun rails-log-show-test ()
-  (interactive)
-  (rails-log-show "test"))
-
-;;;###autoload
-(defun rails-log-show-production ()
-  (interactive)
-  (rails-log-show "production"))
+(defun rails-log (environment)
+  (interactive
+   (list (completing-read "Which log file to open?" '("test" "development" "production"))))
+  (rails-log-show environment))
 
 (provide 'rails-log-mode)
 
