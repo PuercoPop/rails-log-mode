@@ -40,7 +40,7 @@
     (concat "*rails-" project "-" file "-log" "*")))
 
 (defun rails-log-project-root ()
-  (cdr (project-current)))
+  (project-root (project-current)))
 
 (define-derived-mode rails-log-mode fundamental-mode "Rails log"
   "Major mode for viewing Rails log files."
